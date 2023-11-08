@@ -4,9 +4,9 @@ import sys
 
 argument1 = sys.argv[1]
 argument2 = sys.argv[2]
-match = sys.argv[3]
-missmatch = sys.argv[4]
-gap = sys.argv[5]
+match = int(sys.argv[3])
+missmatch = int(sys.argv[4])
+gap = int(sys.argv[5])
 
 
 
