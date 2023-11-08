@@ -4,6 +4,7 @@ import sys
 
 argument1 = sys.argv[1]
 argument2 = sys.argv[2]
+
 match = int(sys.argv[3])
 missmatch = int(sys.argv[4])
 gap = int(sys.argv[5])
@@ -18,7 +19,7 @@ for record in SeqIO.parse(argument2, "fasta"):
 slowo1 = sekwencja
 slowo2 = sekwencja1
 
-matrix = np.zeros((len(slowo2) + 1, len(slowo1) + 1)) 
+matrix = np.zeros((len(slowo2) + 1, len(slowo1) + 1))
 i=-0
 j=-0
 
@@ -45,6 +46,9 @@ wynik2=""
 column = len(slowo1)
 row = len(slowo2)
 
+score = 0
+
+#odczytywanie i wynik
 while row > 0 and column > 0:
     left = matrix[row][column-1]
     up = matrix[row-1][column]
@@ -55,17 +59,26 @@ while row > 0 and column > 0:
         wynik1 += "-"
         wynik2 += slowo2[row-1]
         row -= 1
+        score -= gap
+
 
     elif max(left, up, diag) == diag:
         wynik1 += slowo1[column-1]
         wynik2 += slowo2[row-1]
         column -= 1
         row -= 1
+        if(slowo1[column-1] == slowo2[row-1]):
+            score += match
+        else:
+            score -= missmatch
 
     else:
         wynik1 += slowo1[column-1]        
         wynik2 += "-"                     
-        column -= 1                       
+        column -= 1
+        score -= gap
+
+print(score)
 
 reversed1 = ''.join(reversed(wynik1))
 reversed2 = ''.join(reversed(wynik2))
