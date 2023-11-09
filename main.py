@@ -26,11 +26,11 @@ j=-0
 #inicjacja matrixa
 for x in range(len(slowo1)+1):
     matrix[0][x] = i
-    i -= 1
+    i -= gap
 
 for x in range(len(slowo2)+1):
     matrix[x][0] = j
-    j -= 1
+    j -= gap
 
 #wypelnianie wartosciami
 for row in range(1, len(slowo2)+1):
